@@ -18,3 +18,10 @@ class User(db.Model):
 
     def __repr__(self):
         return f"<User{self.username}>"
+
+    def save(self, commit=True):
+        """Save the record."""
+        db.session.add(self)
+        if commit:
+            db.session.commit()
+        return self

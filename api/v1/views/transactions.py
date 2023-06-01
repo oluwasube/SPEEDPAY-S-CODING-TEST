@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from models.user import User
-from utils.db import db
+
 
 transactions = Blueprint('transactions', __name__)
 
@@ -23,8 +23,7 @@ def deposit():
     current_user = User.query.get(current_user_id)
 
     current_user.balance += amount
-
-    db.session.commit()
+    User.save(commit=True)
 
     return jsonify({'message': 'Deposit successful', 'balance': current_user.balance}), 200
 
@@ -34,7 +33,6 @@ def deposit():
 def withdraw():
 
     try:
-
         data = request.get_json()
 
         amount = data['amount']
@@ -53,7 +51,7 @@ def withdraw():
 
     current_user.balance -= amount
 
-    db.session.commit()
+    User.save(commit=True)
 
     return jsonify({'message': 'Withdrawal successful', 'balance': current_user.balance}), 200
 

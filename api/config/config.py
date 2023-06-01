@@ -1,6 +1,5 @@
 import os
 from decouple import config
-from datetime import timedelta
 
 
 BASE_DIR = os.path.dirname(os.path.realpath(__file__))
@@ -12,12 +11,10 @@ class Config:
     JWT_SECRET_KEY = config('JWT_SECRET_KEY')
 
 
-class DevelopementConfig(Config):
+class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_ECHO = False
-
-    SQLALCHEMY_DATABASE_URI = "sqlite:///" + \
-        os.path.join(BASE_DIR, "devdb.sqlite3")
+    SQLALCHEMY_ECHO = True
+    SQLALCHEMY_DATABASE_URI = "sqlite:///"+os.path.join(BASE_DIR, 'db.sqlite3')
 
 
 class TestConfig(Config):
@@ -29,7 +26,7 @@ class ProductionConfig(Config):
 
 
 config_names = {
-    "dev": DevelopementConfig,
+    "dev": DevelopmentConfig,
     "test": TestConfig,
     "prod": ProductionConfig
 }
