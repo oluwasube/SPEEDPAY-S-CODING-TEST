@@ -1,84 +1,18 @@
-# SPEEDPAY-S-CODING-
+### API installation
 
-from flask import Blueprint, jsonify, request
+To install and run this Python application, follow the steps below:
 
-from flask_jwt_extended import jwt_required, get_jwt_identity
+1. Clone the API repository to your local machine.
+2. Open your terminal and navigate to the directory where the cloned application is located.
+3. create a virtual environment on Linux or Windows gitbash terminal using the command:`python3 -m venv env`
+4. Activate the virtual environment with the command below: `source/env/bin/activate`
+5. Install the required dependencies by running the following command:
+`pip install -r requirements.txt`.
+6. Create a `.env` file in the root folder and define the following variables:
+    `SECRET_KEY:` Set it to a value representing the desired key.
+    `JWT_SECRET_KEY:`Set it to a value representing the desired key.
+7.  cd into the api repository, Run the application using the following command:`python app.py`
 
-from models import db, User
+Upon successful execution, a message will be displayed in the console indicating that the server is running on the specified port and the database connection has been established.
 
-transactions_bp = Blueprint('transactions', __name__)
-
-@transactions_bp.route('/deposit', methods=['POST'])
-
-@jwt_required()
-
-def deposit():
-
-    try:
-
-        data = request.get_json()
-
-        amount = data['amount']
-
-    except KeyError:
-
-        return jsonify({'message': 'Missing amount'}), 400
-
-    current_user_id = get_jwt_identity()
-
-    current_user = User.query.get(current_user_id)
-
-    current_user.balance += amount
-
-    db.session.commit()
-
-    return jsonify({'message': 'Deposit successful', 'balance': current_user.balance}), 200
-
-@transactions_bp.route('/withdraw', methods=['POST'])
-
-@jwt_required()
-
-def withdraw():
-
-    try:
-
-        data = request.get_json()
-
-        amount = data['amount']
-
-    except KeyError:
-
-        return jsonify({'message': 'Missing amount'}), 400
-
-    current_user_id = get_jwt_identity()
-
-    current_user = User.query.get(current_user_id)
-
-    if current_user.balance < amount:
-
-        return jsonify({'message': 'Insufficient balance'}), 400
-
-    current_user.balance -= amount
-
-    db.session.commit()
-
-    return jsonify({'message': 'Withdrawal successful', 'balance': current_user.balance}), 200
-
-@transactions_bp.route('/balance', methods=['GET'])
-
-@jwt_required()
-
-def balance():
-
-    current_user_id = get_jwt_identity()
-
-    current_user = User.query.get(current_user_id)
-
-    return jsonify({'balance': current_user.balance}), 200
-
-@transactions_bp.route('/transfer', methods=['POST'])
-
-@jwt_required()
-
-def
-
+Note: Make sure you have Python and pip installed on your machine before proceeding with the above steps.
