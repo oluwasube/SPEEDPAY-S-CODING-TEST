@@ -14,7 +14,7 @@ To install and run this Python application, follow the steps below:
 - `SECRET_KEY`: Set it to a value representing the desired key.
 - `JWT_SECRET_KEY`: Set it to a value representing the desired key.
 
-7. Change your directory to the API repository and run the application using the following command:
+7. Change your directory to the API repository and run the application using the following command:`python3 app.py`
 
 
 Upon successful execution, a message will be displayed in the console indicating that the server is running on the specified port and the database connection has been established.
