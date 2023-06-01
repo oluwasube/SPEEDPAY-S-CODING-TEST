@@ -26,14 +26,14 @@ Upon successful execution, a message will be displayed in the console indicating
 
 This documentation provides information about the Auth API endpoints.
 
-**Register**
+**Register**:
 Registers a new user.
 
 Endpoint: `api/v1/register`
 
 Method: `POST`
 
-**Request Body**
+**Request Body**:
 The request body should be a JSON object with the following properties:
 
 - `username` (string, required): The username of the user.
@@ -63,14 +63,14 @@ The request body should be a JSON object with the following properties:
 }
 ```
 
-**Login**
+**Login**:
 Authenticates a user and returns an access token.
 
 Endpoint:`api/v1/login`
 
 Method: `POST`
 
-**Request Body**
+**Request Body**:
 The request body should be a JSON object with the following properties:
 
 -`username` (string, required): The username of the user. -`password` (string, required): The password of the user.
@@ -96,7 +96,7 @@ The request body should be a JSON object with the following properties:
 
 ## Transfer API Documentation
 
-**Deposit**
+**Deposit**:
 
 This endpoint allows the authenticated user to deposit an amount to their account balance.
 
@@ -106,7 +106,7 @@ Method: `POST`
 
 Protected: Yes `(JWT required)`
 
-**Request Body**
+**Request Body**:
 The request body must be a JSON object with the following properties:
 
 - `amount` (required): The amount to be deposited.
@@ -127,7 +127,7 @@ The request body must be a JSON object with the following properties:
 
 ```
 
-**Withdraw**
+**Withdraw**:
 This endpoint allows the authenticated user to withdraw an amount from their account balance.
 
 Endpoint: `api/v1/withdraw`
@@ -136,7 +136,7 @@ Method: `POST`
 
 Protected: Yes `(JWT required)`
 
-**Request Body**
+**Request Body**:
 The request body must be a JSON object with the following properties:
 
 - `amount` (required): The amount to be withdrawn.
@@ -158,7 +158,7 @@ The request body must be a JSON object with the following properties:
 
 ```
 
-**Balance**
+**Balance**:
 This endpoint allows the authenticated user to retrieve their current account balance.
 Endpoint: `api/v1/balance`
 
@@ -173,7 +173,7 @@ Protected: Yes `(JWT required)`
 }
 ```
 
-**Transfer**
+**Transfer**:
 
 This endpoint allows the authenticated user to transfer an amount from their account to another user's account.
 
@@ -183,7 +183,7 @@ Method: `POST`
 
 Protected: Yes `(JWT required)`
 
-**Request Body**
+**Request Body**:
 The request body must be a JSON object with the following properties:
 
 - `amount` (required): The amount to be transferred.
