@@ -8,8 +8,7 @@ BASE_DIR = os.path.dirname(os.path.realpath(__file__))
 
 class Config:
     secret_key = config('SECRET_KEY', 'secret')
-    JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=5)
-    JWT_REFRESH_TOKEN_EXPIRES = timedelta(minutes=5)
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
     JWT_SECRET_KEY = config('JWT_SECRET_KEY')
 
 
@@ -19,7 +18,6 @@ class DevelopementConfig(Config):
 
     SQLALCHEMY_DATABASE_URI = "sqlite:///" + \
         os.path.join(BASE_DIR, "devdb.sqlite3")
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 class TestConfig(Config):

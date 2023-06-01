@@ -1,4 +1,5 @@
 from utils.db import db
+from datetime import datetime
 
 
 class User(db.Model):
@@ -11,3 +12,9 @@ class User(db.Model):
     email = db.Column(db.String(55), unique=True, nullable=False)
     account_number = db.Column(db.String(6), unique=True, nullable=False)
     balance = db.Column(db.Float, default=0.0)
+    created_at = db.Column(db.DateTime(), default=datetime.utcnow)
+    updated_at = db.Column(
+        db.DateTime(), default=datetime.utcnow, onupdate=datetime.utcnow)
+
+    def __repr__(self):
+        return f"<User{self.username}>"
