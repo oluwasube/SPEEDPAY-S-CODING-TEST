@@ -24,5 +24,4 @@ class User(db.Model):
         """Save the record."""
         db.session.add(self)
         if commit:
-            db.session.commit()
-        return self
+            return self
