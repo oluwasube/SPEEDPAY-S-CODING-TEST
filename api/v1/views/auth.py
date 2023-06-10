@@ -3,7 +3,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_tok
 from werkzeug.security import generate_password_hash, check_password_hash
 from models.user import User
 from utils.Account_number import generate_account_number
-from utils.db import save
+
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -29,7 +29,7 @@ def register():
 
         user = User(username=username, password=generate_password_hash(
             password), firstname=firstname, lastname=lastname, email=email, account_number=account_number, balance=balance)
-        save(user, commit=True)
+        User.save(user, commit=True)
 
         return jsonify({'message': 'User registered successfully.', 'account_number': account_number}), 201
     except Exception:

@@ -11,6 +11,7 @@ from v1.views.transactions import transactions
 def create(config=config_names['dev']):
     app = Flask(__name__)
     app.config.from_object(config)
+    
     db.init_app(app)
     app.register_blueprint(auth_bp, url_prefix="/api/v1")
     app.register_blueprint(transactions, url_prefix="/api/v1")
@@ -21,7 +22,7 @@ def create(config=config_names['dev']):
     jwt = JWTManager(app)
 
     @app.shell_context_processor
-    def shell_context():
+    def make_shell_context():
         return {
             "db": db,
             "user": user

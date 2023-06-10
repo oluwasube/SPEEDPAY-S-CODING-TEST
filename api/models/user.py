@@ -15,6 +15,14 @@ class User(db.Model):
     created_at = db.Column(db.DateTime(), default=datetime.utcnow)
     updated_at = db.Column(
         db.DateTime(), default=datetime.utcnow, onupdate=datetime.utcnow)
+    transactions = db.relationship('Transaction', backref='user', lazy=True)
 
     def __repr__(self):
         return f"<User{self.username}>"
+
+    def save(self, commit=True):
+        """Save the record."""
+        db.session.add(self)
+        if commit:
+            db.session.commit()
+        return self
